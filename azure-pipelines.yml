@@ -9,7 +9,7 @@ variables:
     buildPlatform: 'Any CPU'
     buildConfiguration: 'Release'
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 steps:
   - task: DotNetCoreCLI@2
