@@ -1,0 +1,28 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet restore'
+    inputs:
+      command: 'restore'
+      projects: 'Eurosafe.Core/Eurosafe.Core.csproj'
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet build $(buildConfiguration)'
+    inputs:
+      command: 'build'
+      arguments: '--configuration $(buildConfiguration)'
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet pack'
+    inputs:
+      command: 'pack'
+      packagesToPack: 'Eurosafe.Core/Eurosafe.Core.csproj'
+      versioningScheme: 'off'
